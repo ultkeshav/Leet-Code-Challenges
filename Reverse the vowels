@@ -1,0 +1,19 @@
+class Solution {
+public:
+    string reverseVowels(string s) {
+        string vowels = "aeiouAEIOU";
+        int left = 0, right = s.size() - 1;
+
+        auto isVowel = [&](char c) {
+            return vowels.find(c) != string::npos;
+        };
+
+        while (left < right) {
+            while (left < right && !isVowel(s[left])) left++;
+            while (left < right && !isVowel(s[right])) right--;
+            swap(s[left++], s[right--]);
+        }
+
+        return s;
+    }
+};
